@@ -1,0 +1,83 @@
+<div class="container"
+    fxLayout="row"
+    fxLayout.sm="column"
+    fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around center"
+    fxLayoutGap="10px" 
+    fxLayoutGap.xs="0">
+
+  <div fxFlex="40">
+    <div fxFlex *ngIf="dish" >
+      <mat-card *ngIf="dish">
+        <mat-card-header>
+          <mat-card-title>
+            <!-- Task 2.3 Use pipe to uppercase dish.name -->
+            <h3>{{dish.name | uppercase}}</h3>
+          </mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src={{dish.image}} alt={{dish.name}}>
+        <mat-card-content>
+          <p>{{dish.description}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+<!-- In this task you will use the comments that are included in the dish object above to 
+  display a list of the comments for the dish. Please use your JavaScript knowledge to recall 
+  how you would access an inner property in a JavaScript object that itself points to an array of JavaScript 
+  objects (comments). This task involves the following steps:
+
+  Use the Angular material list to display the list of comments as shown below. Also apply 
+  the *ngIf="dish" structural directive to both the <mat-list> that displays the list of comments for the dish.
+  Display the date of the comment by processing it through the Angular built-in date pipe. -->
+
+  <div fxFlex="40">
+   
+    <div fxFlex *ngIf="dish" >
+      <mat-card *ngIf="dish">
+        <mat-card-header>
+          <mat-card-title>
+           <h3>Comments</h3>
+          </mat-card-title>
+        </mat-card-header>
+        <!-- <img mat-card-image src={{dish.image}} alt={{dish.name}}> -->
+        <!-- <mat-card-content>
+          <p>{{dish.description}}
+          </p>
+        </mat-card-content> -->
+
+        <mat-card-content>
+          <!-- Task 2.2 Use mat list  -->
+          <mat-list>
+              <div *ngFor="let record of records">
+                  <mat-list-item> {{record.comment + ' '}} </mat-list-item>
+                  <mat-list-item> {{record.rating + ' Stars'}} </mat-list-item>
+                  <mat-list-item>    {{record.author + ' '}}  
+                  <!-- Task 3.2 Use date pipe  -->
+                  {{record.date | date}} </mat-list-item>
+                   </div>
+          </mat-list>
+       
+        </mat-card-content>
+       
+
+        <!-- <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>-->
+
+      </mat-card>
+    </div>
+  </div>
+  
+
+
+ 
+</div>
+
