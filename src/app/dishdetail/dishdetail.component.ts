@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input  } from '@angular/core';
+import { Dish } from '../shared/dish';
+
 // Task 2.1 Add DISh data Object to file
 const DISH = {
   id: '0',
@@ -50,7 +52,11 @@ const DISH = {
   styleUrls: ['./dishdetail.component.scss']
 })
 export class DishdetailComponent implements OnInit {
-  dish = DISH;
+ 
+  @Input()
+  dish: Dish;
+
+  //dish = DISH;
   records = DISH.comments;
 
   constructor() { }
