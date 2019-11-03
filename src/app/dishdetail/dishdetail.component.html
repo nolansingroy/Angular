@@ -56,13 +56,20 @@
           <!-- Task 2.2 Use mat list  -->
           <mat-list>
               <div *ngFor="let record of records">
-                  <mat-list-item> {{record.comment + ' '}} </mat-list-item>
-                  <mat-list-item> {{record.rating + ' Stars'}} </mat-list-item>
+                  <mat-list-item> {{record.comment + ' '}} <br> </mat-list-item>
+                  <mat-list-item> {{record.rating + ' Stars'}} <br> </mat-list-item>
                   <mat-list-item>    {{record.author + ' '}}  
                   <!-- Task 3.2 Use date pipe  -->
                   {{record.date | date}} </mat-list-item>
+                     
+                     
+                  
+
                    </div>
           </mat-list>
+       
+       
+       
        
         </mat-card-content>
        

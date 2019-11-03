@@ -9,17 +9,12 @@ import { DISHES } from '../shared/dishes';
 })
 
 
-
-
-
 export class DishService {
 
-  constructor() { 
+  constructor() { }
 
 	getDishes(): Dish[] {
-		return DISHES:
+		return DISHES;
 	}
-
-  }
 
 }
