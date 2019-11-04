@@ -13,8 +13,16 @@ export class DishService {
 
   constructor() { }
 
-	getDishes(): Dish[] {
-		return DISHES;
-	}
+/*
+ * update the dish service to return a specific dish and feature a dish as follows: 
+ **/
+
+getDish(id: string): Dish {
+    return DISHES.filter((dish) => (dish.id === id))[0];
+  }
+
+  getFeaturedDish(): Dish {
+    return DISHES.filter((dish) => dish.featured)[0];
+  }
 
 }
