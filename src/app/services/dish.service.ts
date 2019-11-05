@@ -2,21 +2,16 @@ import { Injectable } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DISHES } from '../shared/dishes';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
 
-
 export class DishService {
 
   constructor() { }
-
 /*
  * update the dish service to return a specific dish and feature a dish as follows: 
  **/
-
 getDish(id: string): Dish {
     return DISHES.filter((dish) => (dish.id === id))[0];
   }

@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { DishService } from '../services/dish.service';
 
 
-// Task 2.1 Add DISh data Object to file
+// Task 2.1 Add Dish data Object to file
 const DISH = {
   id: '0',
   name: 'Uthappizza',
@@ -72,7 +72,6 @@ export class DishdetailComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.dish = this.dishservice.getDish(id);
 }
-
 
     goBack(): void {
         this.location.back()
