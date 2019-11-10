@@ -10,9 +10,15 @@ export class DishService {
 
   constructor() { }
 /*
- * update the dish service to return a specific dish and feature a dish as follows: 
+ * update the dish service to return a specific dish and feature a dish as follows:
  **/
-getDish(id: string): Dish {
+
+ getDishes(): Dish [] {
+  return DISHES;
+ }
+
+  getDish(id: string): Dish {
+  //filter out dish array with specifc id
     return DISHES.filter((dish) => (dish.id === id))[0];
   }
 

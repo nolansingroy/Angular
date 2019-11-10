@@ -11,7 +11,7 @@ export class LeaderService {
   constructor() { }
 
 /*
- * The purpose of the servive is to provide the details 
+ * The purpose of the servive is to provide the details
  * of the corporate leaders given in leaders.txt above
  **/
 
@@ -23,6 +23,5 @@ export class LeaderService {
 getLeader(): Leader[] {
   return LEADERS;
 }
-
 
 }

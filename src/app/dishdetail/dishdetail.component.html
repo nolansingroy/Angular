@@ -3,7 +3,7 @@
     fxLayout.sm="column"
     fxLayout.xs="column"
     fxLayoutAlign.gt-md="space-around center"
-    fxLayoutGap="10px" 
+    fxLayoutGap="10px"
     fxLayoutGap.xs="0">
 
   <div fxFlex="100">
@@ -23,7 +23,7 @@
         <mat-card-actions>
           <button mat-button>LIKE</button>
           <button mat-button>SHARE</button>
-         
+
           <button mat-button (click)="goBack()"> Back</button>
 
         </mat-card-actions>
@@ -31,17 +31,17 @@
     </div>
   </div>
 
-<!-- In this task you will use the comments that are included in the dish object above to 
-  display a list of the comments for the dish. Please use your JavaScript knowledge to recall 
-  how you would access an inner property in a JavaScript object that itself points to an array of JavaScript 
+<!-- In this task you will use the comments that are included in the dish object above to
+  display a list of the comments for the dish. Please use your JavaScript knowledge to recall
+  how you would access an inner property in a JavaScript object that itself points to an array of JavaScript
   objects (comments). This task involves the following steps:
 
-  Use the Angular material list to display the list of comments as shown below. Also apply 
+  Use the Angular material list to display the list of comments as shown below. Also apply
   the *ngIf="dish" structural directive to both the <mat-list> that displays the list of comments for the dish.
   Display the date of the comment by processing it through the Angular built-in date pipe. -->
 
   <div fxFlex="40">
-   
+
     <div fxFlex *ngIf="dish" >
       <mat-card *ngIf="dish">
         <mat-card-header>
@@ -58,24 +58,21 @@
         <mat-card-content>
           <!-- Task 2.2 Use mat list  -->
           <mat-list>
-              <div *ngFor="let record of records">
-                  <mat-list-item> {{record.comment + ' '}} <br> </mat-list-item>
-                  <mat-list-item> {{record.rating + ' Stars'}} <br> </mat-list-item>
-                  <mat-list-item>    {{record.author + ' '}}  
+              <div *ngFor="let comment of dish.comments">
+                  <mat-list-item> {{comment.comment + ' '}} <br> </mat-list-item>
+                  <mat-list-item> {{comment.rating + ' Stars'}} <br> </mat-list-item>
+                  <mat-list-item>    {{comment.author + ' '}}
                   <!-- Task 3.2 Use date pipe  -->
-                  {{record.date | date}} </mat-list-item>
-                     
-                     
-                  
+                  {{comment.date | date}} </mat-list-item>
 
                    </div>
           </mat-list>
-       
-       
-       
-       
+
+
+
+
         </mat-card-content>
-       
+
 
         <!-- <mat-card-actions>
           <button mat-button>LIKE</button>
@@ -85,9 +82,9 @@
       </mat-card>
     </div>
   </div>
-  
 
 
- 
+
+
 </div>
 

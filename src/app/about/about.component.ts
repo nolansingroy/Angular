@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { LeaderService } from '../services/leader.service';
+
+
+
+//todo: fetch the details of the leaders and
+//make them aviable to the template
 
 
 
 
-//todo: fetch the details of the leaders and make them aviable to the template,
 
 
 @Component({

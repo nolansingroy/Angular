@@ -12,18 +12,18 @@ import { PromotionService } from '../services/promotion.service';
 
 export class HomeComponent implements OnInit {
 
- //update the component to fetch and provide the feature dish and promtion view 
- 
+ //update the component to fetch and provide the feature dish and promtion view
+
   dish: Dish;
   promotion: Promotion;
 
-   constructor(private dishservice: DishService,
-                private promotionservice: PromotionService) { }
+   constructor(private dishService: DishService,
+                private promotionService: PromotionService) { }
 
 
   ngOnInit() {
-    this.dish = this.dishservice.getFeaturedDish();
-    this.promotion = this.promotionservice.getFeaturedPromotion();
+    this.dish = this.dishService.getFeaturedDish();
+    this.promotion = this.promotionService.getFeaturedPromotion();
   }
 
 }
