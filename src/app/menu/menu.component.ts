@@ -13,7 +13,6 @@ export class MenuComponent implements OnInit {
 
   selectedDish: Dish;
 
-
   onSelect(dish: Dish) {
     this.selectedDish = dish;
   }

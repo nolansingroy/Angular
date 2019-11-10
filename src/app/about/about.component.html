@@ -39,7 +39,7 @@
       </div>
     </div>
   </div>
-  
+
   <div fxFlex>
     <mat-card>
       <blockquote>
@@ -53,9 +53,29 @@
     </mat-card>
   </div>
 
-
-  <div fxFlex>
-    <h2>Corporate Leadership</h2>
-    <p>Display the details of the corporate leaders here</p>
+  <div fxFlex *ngIf="leaders">
+      <h2>Corporate Leadership</h2>
+      <p>Display the details of the corporate leaders here</p>
   </div>
+
+<mat-card fxFlex *ngIf="leaders" >
+    <div *ngFor="let lead of leaders">
+    <mat-card-header>
+      <div mat-card-avatar></div>
+      <mat-card-title>
+        <h3>{{lead.name | uppercase}}</h3>
+      </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src={{lead.image}} alt={{lead.name}}>
+    <mat-card-content>
+        <p>{{"Designation: " + lead.designation}}</p>
+        <p>{{"Abbrevation: " + lead.abbr}}</p>
+        <p>{{ "Featured:  " + lead.featured}}</p>
+      <p>{{"Description" + lead.description}}
+      </p>
+    </mat-card-content>
+    </div>
+  </mat-card>
+
+
 </div>

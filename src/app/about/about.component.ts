@@ -1,14 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeaderService } from '../services/leader.service';
-
-
-
-//todo: fetch the details of the leaders and
-//make them aviable to the template
-
-
-
-
+import { Leader } from '../shared/leader';
 
 
 @Component({
@@ -17,10 +9,16 @@ import { LeaderService } from '../services/leader.service';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
+//@input()
+leaders: Leader[];
+//promotion: Promotion;
 
-  constructor() { }
+
+  constructor(private leaderService: LeaderService) { }
 
   ngOnInit() {
+    this.leaders = this.leaderService.getLeaders();
+
   }
 
 }

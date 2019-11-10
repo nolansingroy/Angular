@@ -20,7 +20,8 @@ export class LeaderService {
 * Simple function to return the LEADERS constant
 * that holds the json file
 */
-getLeader(): Leader[] {
+
+getLeaders(): Leader[] {
   return LEADERS;
 }
 
