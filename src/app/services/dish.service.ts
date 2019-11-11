@@ -13,17 +13,17 @@ export class DishService {
  * update the dish service to return a specific dish and feature a dish as follows:
  **/
 
- getDishes(): Dish [] {
-  return DISHES;
+ getDishes(): Promise<Dish[]> {
+  return Promise.resolve(DISHES);
  }
 
-  getDish(id: string): Dish {
+  getDish(id: string): Promise<Dish>{
   //filter out dish array with specifc id
-    return DISHES.filter((dish) => (dish.id === id))[0];
+    return Promise.resolve(DISHES.filter((dish) => (dish.id === id))[0]);
   }
 
-  getFeaturedDish(): Dish {
-    return DISHES.filter((dish) => dish.featured)[0];
+  getFeaturedDish(): Promise<Dish> {
+    return Promise.resolve(DISHES.filter((dish) => dish.featured)[0]);
   }
 
 }

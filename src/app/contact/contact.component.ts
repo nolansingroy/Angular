@@ -8,14 +8,13 @@ import { Feedback, ContactType } from '../shared/feedback';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
+
 export class ContactComponent implements OnInit {
 
   @ViewChild('fform')feedbackFormDirective;
-
   feedbackForm:FormGroup;
   feedback: Feedback;
   contactType = ContactType;
-
   constructor(private fb: FormBuilder) {
     this.createForm();
    }
