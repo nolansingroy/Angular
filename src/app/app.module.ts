@@ -28,6 +28,11 @@ import { ContactComponent } from './contact/contact.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { MatDialogModule } from '@angular/material';
+//Imports to use the template-driven forms
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -51,7 +56,11 @@ import { MatDialogModule } from '@angular/material';
     MatCardModule,
     MatButtonModule,
     AppRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    FormsModule
   ],
   entryComponents: [
     LoginComponent
