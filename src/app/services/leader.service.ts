@@ -20,8 +20,14 @@ export class LeaderService {
 * that holds the json file
 */
 
+// getLeaders(): Promise<Leader[]> {
+//   return Promise.resolve(LEADERS);
+// }
+
 getLeaders(): Promise<Leader[]> {
-  return Promise.resolve(LEADERS);
+  return new Promise(resolve => {
+    setTimeout(() => resolve(LEADERS), 2000)
+  });
 }
 
 }
