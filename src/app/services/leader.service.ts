@@ -11,18 +11,23 @@ export class LeaderService {
   constructor() { }
 
 /*
- * The purpose of the servive is to provide the details
+ * The purpose of the service is to provide the details
  * of the corporate leaders given in leaders.txt above
  **/
-
 
 /*
 * Simple function to return the LEADERS constant
 * that holds the json file
 */
 
-getLeaders(): Leader[] {
-  return LEADERS;
+// getLeaders(): Promise<Leader[]> {
+//   return Promise.resolve(LEADERS);
+// }
+
+getLeaders(): Promise<Leader[]> {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(LEADERS), 2000)
+  });
 }
 
 }

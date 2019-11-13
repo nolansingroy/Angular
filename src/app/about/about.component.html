@@ -61,17 +61,17 @@
 <mat-card fxFlex *ngIf="leaders" >
     <div *ngFor="let lead of leaders">
     <mat-card-header>
-      <div mat-card-avatar></div>
+      <img mat-card-avatar src={{lead.image}}>
       <mat-card-title>
         <h3>{{lead.name | uppercase}}</h3>
       </mat-card-title>
     </mat-card-header>
-    <img mat-card-image src={{lead.image}} alt={{lead.name}}>
+<!-- Todo: use mdList Angular Material component -->
     <mat-card-content>
         <p>{{"Designation: " + lead.designation}}</p>
         <p>{{"Abbrevation: " + lead.abbr}}</p>
         <p>{{ "Featured:  " + lead.featured}}</p>
-      <p>{{"Description" + lead.description}}
+      <p>{{"Description: " + lead.description}}
       </p>
     </mat-card-content>
     </div>

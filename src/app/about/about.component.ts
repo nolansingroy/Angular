@@ -10,14 +10,20 @@ import { Leader } from '../shared/leader';
 })
 export class AboutComponent implements OnInit {
 //@input()
-leaders: Leader[];
+ leaders: Leader[];
 //promotion: Promotion;
 
 
   constructor(private leaderService: LeaderService) { }
 
   ngOnInit() {
-    this.leaders = this.leaderService.getLeaders();
+    //fetch the details of the leaders without promise
+    //this.leaders = this.leaderService.getLeaders();
+
+    //handle the promise
+      this.leaderService.getLeaders().then(
+      leaders => this.leaders = leaders
+    )
 
   }
 
