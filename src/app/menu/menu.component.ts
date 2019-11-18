@@ -22,8 +22,9 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     //this.dishes = this.dishService.getDishes();
 
-    //handle the promise
-    this.dishService.getDishes().then(dishes => this.dishes = dishes);
+    //handle the observable by using the .subscribe method()
+    this.dishService.getDishes().subscribe(dishes => this.dishes = dishes);
+
   }
 
 }

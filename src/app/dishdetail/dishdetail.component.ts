@@ -25,7 +25,7 @@ export class DishdetailComponent implements OnInit {
     //this.dish = this.dishService.getDish(id);
 
     //handle with the promise
-    this.dishService.getDish(id).then(
+    this.dishService.getDish(id).subscribe(
     dish => this.dish = dish
 );
 }
