@@ -3,6 +3,7 @@
 @import 'variables';
 
 @import '../node_modules/font-awesome/scss/font-awesome';
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 
 $lt-gray: #ddd;
@@ -23,8 +24,6 @@ $divider-color:        #BDBDBD;
     padding: $pad-up-down $pad-left-right;
 }
 
-
-
 .background-primary {
     background-color: $background-dark!important;
   }
@@ -33,8 +32,4 @@ $divider-color:        #BDBDBD;
   }
 .text-floral-white {
     color: floralwhite!important;
-}
-
-.flex-spacer {
-  flex: 1 1 auto;
 }
