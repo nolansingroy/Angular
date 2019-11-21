@@ -25,8 +25,14 @@
           <button mat-button>SHARE</button>
 
           <button mat-button (click)="goBack()"> Back</button>
+          <button mat-button [routerLink]="['/dishdetail', prev]"><span class="fa fa-chevron-left fa-lg"></span></button>
+
+          <span class="flex-spacer"></span>
+          <button mat-button [routerLink]="['/dishdetail', next]"><span class="fa fa-chevron-right fa-lg"></span></button>
 
         </mat-card-actions>
+
+
       </mat-card>
     </div>
   </div>
