@@ -22,7 +22,7 @@
         </mat-card-content>
         <mat-card-actions>
           <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
+          <button mat-button (click)="share()">SHARE</button>
 
           <button mat-button (click)="goBack()"> Back</button>
           <button mat-button [routerLink]="['/dishdetail', prev]"><span class="fa fa-chevron-left fa-lg"></span></button>
@@ -46,7 +46,7 @@
   the *ngIf="dish" structural directive to both the <mat-list> that displays the list of comments for the dish.
   Display the date of the comment by processing it through the Angular built-in date pipe. -->
 
-  <div fxFlex="40">
+  <div fxFlex="60">
 
     <div fxFlex *ngIf="dish" >
       <mat-card *ngIf="dish">
@@ -55,13 +55,7 @@
            <h3>Comments</h3>
           </mat-card-title>
         </mat-card-header>
-        <!-- <img mat-card-image src={{dish.image}} alt={{dish.name}}> -->
-        <!-- <mat-card-content>
-          <p>{{dish.description}}
-          </p>
-        </mat-card-content> -->
-
-        <mat-card-content>
+      <mat-card-content>
           <!-- Task 2.2 Use mat list  -->
           <mat-list>
               <div *ngFor="let comment of dish.comments">
@@ -70,26 +64,47 @@
                   <mat-list-item>    {{comment.author + ' '}}
                   <!-- Task 3.2 Use date pipe  -->
                   {{comment.date | date}} </mat-list-item>
-
                    </div>
           </mat-list>
-
-
-
-
         </mat-card-content>
-
-
-        <!-- <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>-->
-
       </mat-card>
+    </div>
+
+    <div fxFlex fxFlexOffset="20px" class="form-size">
+        <h3>Submit your Review of the Dish</h3>
+        <p>{{ userpostForm.value | json }} {{ userpostForm.status | json }}</p>
+
+        <form novalidate [formGroup]="userpostForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+          <p>
+            <mat-form-field class="half-width">
+              <input matInput formControlName="name" placeholder="First Name" type="text" required>
+              <!-- <mat-error *ngIf="feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched">First name is required</mat-error>
+              <mat-error *ngIf="formErrors.firstname">{{formErrors.firstname}}</mat-error> -->
+
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width">
+              <input matInput formControlName="rating" placeholder="rating. Number" type="tel" pattern="[0-9]*" required>
+              <!-- <mat-error *ngIf="userpostForm.get('rating').hasError('required') && feedbackForm.get('telnum').touched">Tel. number is required</mat-error>
+              <mat-error *ngIf="formErrors.telnum">{{formErrors.telnum}}</mat-error> -->
+            </mat-form-field>
+          </p>
+
+          <p>
+            <mat-form-field class="full-width">
+              <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
+            </mat-form-field>
+          </p>
+          <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
+        </form>
     </div>
 
 
   </div>
+
+
+
 
 <div [hidden]="dish">
   <mat-spinner></mat-spinner> Loading ... Please wait!
