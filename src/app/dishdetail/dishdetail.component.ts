@@ -30,7 +30,7 @@ export class DishdetailComponent implements OnInit {
 
   @ViewChild('fform')userpostFormDirective;
   userpostForm:FormGroup;
-  userpost: Feedback;
+  userpost: Userpost;
 
   //simple js obejct to contain all errors for form
   formErrors = {
@@ -104,9 +104,6 @@ setPrevNext(dishId: string) {
         rating: '',
         message: '',
         date: ''
-
-
-
       });
 
 
@@ -145,15 +142,30 @@ onValueChanged(data?: any){
 onSubmit() {
   this.userpost = this.userpostForm.value;
   console.log(this.userpost);
+
+  //set date feild to date.now()
+  this.userpost.date = new Date().toISOString();
   this.userpostForm.reset({
    name: '',
    rating:'',
    message: '',
    date: ''
-
   });
   //this.userpostFormDirective.resetForm();
+
+  //push
+
+  let container = [];
+  container.push(this.userpost);
+  console.log(container);
+
+console.log(this.userpost.message);
+
+console.log(this.userpost);
 }
+//what is userpost.value.date
+
+
 
 
 

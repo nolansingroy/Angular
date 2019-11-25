@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-
   /**
    * Upgraded code to handle the observable
    */
