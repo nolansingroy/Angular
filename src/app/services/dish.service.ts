@@ -16,7 +16,6 @@ export class DishService {
  * update the dish service to return a specific dish and feature a dish as follows:
  **/
 
-
  //Stimulate a delayed response with 2 seconds using delay function
 getDishes(): Observable<Dish[]> {
   return of(DISHES).pipe(delay(2000));
@@ -29,7 +28,6 @@ getDish(id: string): Observable<Dish> {
   getFeaturedDish(): Observable<Dish> {
 	return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
 }
-
 
 getDishIds(): Observable<string[] | any>{
 	return of(DISHES.map( dish=> dish.id ));

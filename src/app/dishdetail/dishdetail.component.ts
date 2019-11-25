@@ -6,12 +6,7 @@ import { DishService } from '../services/dish.service';
 import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
-import { Feedback, ContactType } from '../shared/feedback';
-import { Userpost } from '../shared/userpost';
-
-
-
+import { Userpost, userpostContainer } from '../shared/userpost';
 
 
 // Task 2.1 Add Dish data Object to file
@@ -32,6 +27,7 @@ export class DishdetailComponent implements OnInit {
   userpostForm:FormGroup;
   userpost: Userpost;
 
+
   //simple js obejct to contain all errors for form
   formErrors = {
   'name': '',
@@ -51,7 +47,6 @@ validationMessages = {
     'minlength': 'Last Name must be at least 2 characters long. ',
     'maxlength': 'Last Name cannot be more than 25 characters long.'
  },
-
  'message': {
    'required': 'Your feed back is required.',
  }
@@ -73,11 +68,10 @@ validationMessages = {
     this.dishService.getDish(id).subscribe(
     dish => this.dish = dish);
 
-	this.dishService.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
+  this.dishService.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
+
 	this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id']))).subscribe(dish => {this.dish = dish; this.setPrevNext(dish.id); });
 }
-
-
 
 setPrevNext(dishId: string) {
 	const index = this.dishIds.indexOf(dishId);
@@ -99,7 +93,6 @@ setPrevNext(dishId: string) {
     createForm(): void {
       this.userpostForm = this.fb.group({
         //fields need to closely mirror userpost.ts class
-
         name: '',
         rating: '',
         message: '',
@@ -154,19 +147,17 @@ onSubmit() {
   //this.userpostFormDirective.resetForm();
 
   //push
-
-  let container = [];
-  container.push(this.userpost);
-  console.log(container);
-
-console.log(this.userpost.message);
-
-console.log(this.userpost);
+  // const container = [];
+  // container.push(this.userpost);
+  // console.log(container);
+  // console.log(this.userpost.message);
+  // console.log(this.userpost);
+  // userpostContainer.push(this.userpost);
+  // console.log('userpost Container below!');
+  // console.log(userpostContainer);
+  // console.log(userpostContainer[0]);
+  // console.log(userpostContainer);
 }
 //what is userpost.value.date
-
-
-
-
 
 }

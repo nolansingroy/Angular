@@ -63,21 +63,28 @@
                   <mat-list-item> {{comment.rating + ' Stars'}} <br> </mat-list-item>
                   <mat-list-item>    {{comment.author + ' '}}
                   <!-- Task 3.2 Use date pipe  -->
-                  {{comment.date | date}} </mat-list-item>
-                   </div>
+                  {{comment.date | date}}
+                </mat-list-item>
+                </div>
+                  <!-- userpost data after submit btn-->
+                  <div *ngIf="this.userpost" >
+                      <mat-list-item> {{this.userpost.name | json}}</mat-list-item>
+                      <mat-list-item> {{this.userpost.rating | json}}</mat-list-item>
+                      <mat-list-item> {{this.userpost.message | json}}</mat-list-item>
+                      <mat-list-item> {{this.userpost.date | json}}</mat-list-item>
+                      </div>
           </mat-list>
           <!-- Preview list of the feedback! -->
           <mat-list>
-              <p>{{ userpostForm.value | json }} </p>
-            <div *ngFor="let up of userpostForm">
-
-           <mat-list-item> <p> {{ userpostForm.value}}</p><br> </mat-list-item>
-            <mat-list-item>{{ up.value}} <br> </mat-list-item>
-            <mat-list-item>{{ up.value}} <br> </mat-list-item>
-          </div>
+           <mat-list-item> <p>{{ userpostForm.value.name | json}}</p><br> </mat-list-item>
+            <mat-list-item>{{ userpostForm.value.rating | json }} <br> </mat-list-item>
+            <mat-list-item>{{ userpostForm.value.message | json}} <br> </mat-list-item>
+            <!-- <mat-list-item>{{ userpostForm.value.date | json}} <br> </mat-list-item> -->
           </mat-list>
         </mat-card-content>
       </mat-card>
+
+
     </div>
 
     <div fxFlex fxFlexOffset="20px" class="form-size">

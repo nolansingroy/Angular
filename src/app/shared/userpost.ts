@@ -6,3 +6,6 @@ export class Userpost {
   message: string;
   date: string;
 }
+
+
+export const userpostContainer = [];

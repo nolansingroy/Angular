@@ -71,7 +71,6 @@ validationMessages = {
 
  }
 /**
- *
  * @param data
  * angular.io form validation
  */
@@ -94,10 +93,6 @@ onValueChanged(data?: any){
      }
    }
 }
-
-
-
-
   onSubmit() {
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
