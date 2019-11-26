@@ -61,7 +61,7 @@
               <div *ngFor="let comment of dish.comments">
                   <mat-list-item> {{comment.comment + ' '}} <br> </mat-list-item>
                   <mat-list-item> {{comment.rating + ' Stars'}} <br> </mat-list-item>
-                  <mat-list-item>    {{comment.author + ' '}}
+                  <mat-list-item>  {{comment.author + ' '}}
                   <!-- Task 3.2 Use date pipe  -->
                   {{comment.date | date}}
                 </mat-list-item>
@@ -94,8 +94,9 @@
         <form novalidate [formGroup]="userpostForm" #fform="ngForm" (ngSubmit)="onSubmit()">
           <p>
             <mat-form-field class="half-width">
-              <input matInput formControlName="name" placeholder="First Name" type="text" required>
-
+              <input matInput formControlName="name" placeholder=" Authors Name" type="text" required>
+              <mat-error *ngIf="userpostForm.get('name').hasError('required') && userpostForm.get('name').touched">Authors name is required</mat-error>
+              <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
             </mat-form-field>
           </p>
           <p>
@@ -106,17 +107,16 @@
               <mat-slider formControlName="rating" thumbLabel tickInterval="1" min="1" max="5" step="1" value="3"></mat-slider>
             </mat-form-field>
           </p>
-
           <p>
             <mat-form-field class="full-width">
-              <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
+              <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12 type="text" required></textarea>
+              <mat-error *ngIf="userpostForm.get('message').hasError('required') && userpostForm.get('message').touched">Message is required</mat-error>
+              <mat-error *ngIf="formErrors.message">{{formErrors.message}}</mat-error>
             </mat-form-field>
           </p>
-          <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
+          <button type="submit"  [disabled]="userpostForm.invalid" mat-button class="background-primary text-floral-white">Submit</button>
         </form>
     </div>
-
-
   </div>
 
 <div [hidden]="dish">

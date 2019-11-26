@@ -5,9 +5,7 @@ import { Location } from '@angular/common';
 import { DishService } from '../services/dish.service';
 import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 import { Userpost, userpostContainer } from '../shared/userpost';
-
 
 // Task 2.1 Add Dish data Object to file
 @Component({
@@ -38,18 +36,14 @@ export class DishdetailComponent implements OnInit {
 //TODO: ValidationMessage object
 validationMessages = {
   'name': {
-    'required':'First Name is required.',
-    'minlength': 'First Name must be at least 2 characters long.',
-    'maxlength': 'FirstName cannot be more than 25 characters long.'
- },
- 'rating': {
-    'required': 'rating is required.',
-    'minlength': 'Last Name must be at least 2 characters long. ',
-    'maxlength': 'Last Name cannot be more than 25 characters long.'
- },
+    'required':' Author name is required.',
+    'minlength': 'Name must be at least 2 characters long.', },
+    'rating': '',
  'message': {
    'required': 'Your feed back is required.',
- }
+   'minlength': 'message is required and must contain a couple characters! '
+ },
+ 'date': {}
 }
 
   constructor(private dishService: DishService,
@@ -70,7 +64,8 @@ validationMessages = {
 
   this.dishService.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
 
-	this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id']))).subscribe(dish => {this.dish = dish; this.setPrevNext(dish.id); });
+  this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id']))).subscribe(dish => {this.dish = dish; this.setPrevNext(dish.id); });
+
 }
 
 setPrevNext(dishId: string) {
@@ -91,20 +86,15 @@ setPrevNext(dishId: string) {
     }
 
     createForm(): void {
-      this.userpostForm = this.fb.group({
-        //fields need to closely mirror userpost.ts class
-        name: '',
-        rating: '',
-        message: '',
-        date: ''
-      });
-
+       this.userpostForm = this.fb.group({
+      name: ['',[ Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      rating: [''],
+      message: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(25)]]
+      date: ['']
+    });
 
  this.userpostForm.valueChanges.subscribe(data => this.onValueChanged(data));
-
  this.onValueChanged(); //reset validation messages now
-
-
 }
 
 /**
