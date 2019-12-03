@@ -62,23 +62,23 @@
                   <mat-list-item> {{comment.comment + ' '}} <br> </mat-list-item>
                   <mat-list-item> {{comment.rating + ' Stars'}} <br> </mat-list-item>
                   <mat-list-item>  {{comment.author + ' '}}
-                  <!-- Task 3.2 Use date pipe  -->
-                  {{comment.date | date}}
+
+                  <mat-list-item>  {{comment.date | date}} </mat-list-item>
                 </mat-list-item>
                 </div>
                   <!-- userpost data after submit btn-->
-                  <div *ngIf="this.userpost" >
-                      <mat-list-item> {{this.userpost.name | json}}</mat-list-item>
-                      <mat-list-item> {{this.userpost.rating | json}}</mat-list-item>
-                      <mat-list-item> {{this.userpost.message | json}}</mat-list-item>
-                      <mat-list-item> {{this.userpost.date | json}}</mat-list-item>
+                  <div *ngIf="this.comment" >
+                      <mat-list-item> {{this.comment.author | json}}</mat-list-item>
+                      <mat-list-item> {{this.comment.rating | json}}</mat-list-item>
+                      <mat-list-item> {{this.comment.comment | json}}</mat-list-item>
+                      <mat-list-item> {{this.comment.date | json}}</mat-list-item>
                       </div>
           </mat-list>
           <!-- Preview list of the feedback! -->
           <mat-list>
-           <mat-list-item> <p>{{ userpostForm.value.name | json}}</p><br> </mat-list-item>
-            <mat-list-item>{{ userpostForm.value.rating | json }} <br> </mat-list-item>
-            <mat-list-item>{{ userpostForm.value.message | json}} <br> </mat-list-item>
+           <mat-list-item> <p>{{ commentForm.value.author | json}}</p><br> </mat-list-item>
+            <mat-list-item>{{ commentForm.value.rating | json }} <br> </mat-list-item>
+            <mat-list-item>{{ commentForm.value.comment | json}} <br> </mat-list-item>
             <!-- <mat-list-item>{{ userpostForm.value.date | json}} <br> </mat-list-item> -->
           </mat-list>
         </mat-card-content>
@@ -89,14 +89,14 @@
 
     <div fxFlex fxFlexOffset="20px" class="form-size">
         <h3>Submit your Review of the Dish</h3>
-        <p>{{ userpostForm.value | json }} {{ userpostForm.status | json }}</p>
+        <p>{{ commentForm.value | json }} {{ commentForm.status | json }}</p>
 
-        <form novalidate [formGroup]="userpostForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+        <form novalidate [formGroup]="commentForm" #fform="ngForm" (ngSubmit)="onSubmit()">
           <p>
             <mat-form-field class="half-width">
-              <input matInput formControlName="name" placeholder=" Authors Name" type="text" required>
-              <mat-error *ngIf="userpostForm.get('name').hasError('required') && userpostForm.get('name').touched">Authors name is required</mat-error>
-              <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+              <input matInput formControlName="author" placeholder=" Authors Name" type="text" required>
+              <mat-error *ngIf="commentForm.get('author').hasError('required') && commentForm.get('author').touched">Authors name is required</mat-error>
+              <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
             </mat-form-field>
           </p>
           <p>
@@ -109,12 +109,12 @@
           </p>
           <p>
             <mat-form-field class="full-width">
-              <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12 type="text" required></textarea>
-              <mat-error *ngIf="userpostForm.get('message').hasError('required') && userpostForm.get('message').touched">Message is required</mat-error>
-              <mat-error *ngIf="formErrors.message">{{formErrors.message}}</mat-error>
+              <textarea matInput formControlName="comment" placeholder="Your Feedback" rows=12 type="text" required></textarea>
+              <mat-error *ngIf="commentForm.get('comment').hasError('required') && commentForm.get('comment').touched">Message is required</mat-error>
+              <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
             </mat-form-field>
           </p>
-          <button type="submit"  [disabled]="userpostForm.invalid" mat-button class="background-primary text-floral-white">Submit</button>
+          <button type="submit"  [disabled]="commentForm.invalid" mat-button class="background-primary text-floral-white">Submit</button>
         </form>
     </div>
   </div>

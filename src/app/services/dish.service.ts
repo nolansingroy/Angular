@@ -37,4 +37,13 @@ getDishIds(): Observable<string[] | any>{
    return this.getDishes().pipe(map(dishes => dishes.map(dish => dish.id))).pipe(catchError(error => error));
 }
 
+putDish(dish:Dish): Observable<Dish> {
+	const httpOptions = {
+	  headers: new HttpHeaders({
+	'Content-Type': 'application/json'	
+	})
+	};
+return this.http.put<Dish>(baserURL + 'dishes/' + dish.id,
+dish,httpOptions)
+ }
 }

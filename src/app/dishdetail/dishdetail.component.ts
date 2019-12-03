@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { DishService } from '../services/dish.service';
 import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Userpost, userpostContainer } from '../shared/userpost';
+import { Comment} from '../shared/comment';
 
 
 
@@ -25,28 +25,28 @@ export class DishdetailComponent implements OnInit {
   next: string;
 
   @ViewChild('fform')userpostFormDirective;
-  userpostForm:FormGroup;
-  userpost: Userpost;
+  comment: Comment;
+  commentForm: FormGroup;
+  dishcopy: Dish;
+  //userpostForm:FormGroup;
+  //userpost: Userpost;
 
 
   //simple js obejct to contain all errors for form
   formErrors = {
-  'name': '',
-  'rating': '',
-  'message': '',
-  'date': ''
+  'author': '',
+  'comment': ''
 };
 //TODO: ValidationMessage object
 validationMessages = {
-  'name': {
+  'author': {
     'required':' Author name is required.',
-    'minlength': 'Name must be at least 2 characters long.', },
-    'rating': '',
- 'message': {
-   'required': 'Your feed back is required.',
-   'minlength': 'message is required and must contain a couple characters! '
- },
- 'date': {}
+    'minlength': 'Authors must be at least 2 characters long.'
+  },
+ 'comment': {
+   'required': 'Your comment is required.'
+
+  }
 }
 
   constructor(private dishService: DishService,
@@ -56,17 +56,18 @@ validationMessages = {
                 @Inject('BaseURL') private BaseURL) { }
 
                 ngOnInit() {
+	this.createForm();
 
-    let id = this.route.snapshot.params['id'];
+//    let id = this.route.snapshot.params['id'];
     //this.dish = this.dishService.getDish(id);
 
     //handle with the promise
-    this.dishService.getDish(id).subscribe(
-    dish => this.dish = dish);
+    // this.dishService.getDish(id).subscribe(
+    // dish => this.dish = dish);
 
   this.dishService.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
 
-  this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id']))).subscribe(dish => {this.dish = dish; this.setPrevNext(dish.id); }, errmess => this.errMess = <any>errmess);
+  this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id']))).subscribe(dish => {this.dish = dish;this.dishcopy = dish; this.setPrevNext(dish.id); }, errmess => this.errMess = <any>errmess);
 
 }
 
@@ -88,14 +89,14 @@ setPrevNext(dishId: string) {
     }
 
     createForm(): void {
-       this.userpostForm = this.fb.group({
-      name: ['',[ Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+       this.commentForm = this.fb.group({
+      author: ['',[ Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       rating: [''],
-      message: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(25)]],
+      comment: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(25)]],
       date: ['']
     });
 
- this.userpostForm.valueChanges.subscribe(data => this.onValueChanged(data));
+ this.commentForm.valueChanges.subscribe(data => this.onValueChanged(data));
  this.onValueChanged(); //reset validation messages now
 }
 
@@ -105,8 +106,8 @@ setPrevNext(dishId: string) {
  * angular.io form validation
  */
 onValueChanged(data?: any){
-  if (!this.userpostForm) { return;}
-  const form = this.userpostForm;
+  if (!this.commentForm) { return;}
+  const form = this.commentForm;
   for (const field in this.formErrors){
    if (this.formErrors.hasOwnProperty(field)) {
 	  this.formErrors[field] = '';
@@ -125,15 +126,18 @@ onValueChanged(data?: any){
 }
 
 onSubmit() {
-  this.userpost = this.userpostForm.value;
-  console.log(this.userpost);
+  this.comment = this.commentForm.value;
 
   //set date feild to date.now()
-  this.userpost.date = new Date().toISOString();
-  this.userpostForm.reset({
-   name: '',
+  this.comment.date = new Date().toISOString();
+  this.dishcopy.comments.push(this.comment);
+  this.dishService.putDish(this.dishcopy).subscribe(dish => {
+	this.dish = dish;this.dishcopy = dish;
+	}, errmess => {this.dish = null; this.dishcopy = null; this.errMess  = <any>errmess;});
+this.commentForm.reset({
+   author: '',
    rating:'',
-   message: '',
+   comment: '',
    date: ''
   });
   //this.userpostFormDirective.resetForm();
