@@ -7,6 +7,8 @@ import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Userpost, userpostContainer } from '../shared/userpost';
 
+
+
 // Task 2.1 Add Dish data Object to file
 @Component({
   selector: 'app-dishdetail',
@@ -16,6 +18,7 @@ import { Userpost, userpostContainer } from '../shared/userpost';
 
 export class DishdetailComponent implements OnInit {
 
+  errMess: string[];
   dish: Dish;
   dishIds: string[];
   prev: string;
@@ -63,7 +66,7 @@ validationMessages = {
 
   this.dishService.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
 
-  this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id']))).subscribe(dish => {this.dish = dish; this.setPrevNext(dish.id); });
+  this.route.params.pipe(switchMap((params: Params) => this.dishService.getDish(params['id']))).subscribe(dish => {this.dish = dish; this.setPrevNext(dish.id); }, errmess => this.errMess = <any>errmess);
 
 }
 

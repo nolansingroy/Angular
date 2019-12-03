@@ -15,6 +15,10 @@ import { Leader } from '../shared/leader';
 export class HomeComponent implements OnInit {
 
  //update the component to fetch and provide the feature dish and promtion view
+  dishErrMess: string;
+  promotionErrMess: string;
+  leaderErrMess: string;
+
   dish: Dish;
   promotion: Promotion;
   leaders: Leader[];
@@ -30,16 +34,18 @@ export class HomeComponent implements OnInit {
    * Upgraded code to handle the observable
    */
   this.dishService.getFeaturedDish().subscribe(
-    dish => this.dish = dish
-  )
+    dish => this.dish = dish, errmess => this.dishErrMess = <any>errmess
+  );
 
   this.promotionService.getFeaturedPromotion().subscribe(
-    promotion => this.promotion = promotion
-  )
+    promotion => this.promotion = promotion,
+    errmess => this.promotionErrMess = <any>errmess
+  );
 
   this.leaderService.getLeaders().subscribe(
-  leaders => this.leaders = leaders
-  )
+  leaders => this.leaders = leaders,
+errmess => this.leaderErrMess = errmess
+  );
 
   }
 
