@@ -1,23 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 import { Dish } from '../shared/dish';
-import { DISHES } from '../shared/dishes';
+//import { DISHES } from '../shared/dishes';
 import { DishService } from '../services/dish.service';
+import { baseURL } from '../shared/baseurl';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
+
 export class MenuComponent implements OnInit {
-  dishes: Dish[] = DISHES;
+  dishes: Dish[];
 
-  selectedDish: Dish;
+//  selectedDish: Dish;
 
-  onSelect(dish: Dish) {
-    this.selectedDish = dish;
-  }
+ // onSelect(dish: Dish) {
+ //   this.selectedDish = dish;
+ // }
 
-  constructor(private dishService: DishService) { }
+  constructor(private dishService: DishService,
+	@Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
     //this.dishes = this.dishService.getDishes();

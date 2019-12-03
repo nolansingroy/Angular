@@ -1,4 +1,4 @@
-import { Component, OnInit, Input , ViewChild } from '@angular/core';
+import { Component, OnInit, Input , ViewChild, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -49,11 +49,10 @@ validationMessages = {
   constructor(private dishService: DishService,
                 private route: ActivatedRoute,
                 private location: Location,
-                private fb: FormBuilder
-                ) {
-                  this.createForm();
-                 }
-  ngOnInit() {
+                private fb: FormBuilder,
+                @Inject('BaseURL') private BaseURL) { }
+
+                ngOnInit() {
 
     let id = this.route.snapshot.params['id'];
     //this.dish = this.dishService.getDish(id);
@@ -89,7 +88,7 @@ setPrevNext(dishId: string) {
        this.userpostForm = this.fb.group({
       name: ['',[ Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       rating: [''],
-      message: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(25)]]
+      message: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(25)]],
       date: ['']
     });
 
