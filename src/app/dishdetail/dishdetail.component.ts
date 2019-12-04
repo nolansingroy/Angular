@@ -127,33 +127,20 @@ onValueChanged(data?: any){
 
 onSubmit() {
   this.comment = this.commentForm.value;
-
-  //set date feild to date.now()
   this.comment.date = new Date().toISOString();
+  console.log(this.comment);
   this.dishcopy.comments.push(this.comment);
+  console.log(this.dishcopy.comments);
   this.dishService.putDish(this.dishcopy).subscribe(dish => {
 	this.dish = dish;this.dishcopy = dish;
 	}, errmess => {this.dish = null; this.dishcopy = null; this.errMess  = <any>errmess;});
-this.commentForm.reset({
+
+  this.commentForm.reset({
    author: '',
    rating:'',
    comment: '',
    date: ''
   });
-  //this.userpostFormDirective.resetForm();
-
-  //push
-  // const container = [];
-  // container.push(this.userpost);
-  // console.log(container);
-  // console.log(this.userpost.message);
-  // console.log(this.userpost);
-  // userpostContainer.push(this.userpost);
-  // console.log('userpost Container below!');
-  // console.log(userpostContainer);
-  // console.log(userpostContainer[0]);
-  // console.log(userpostContainer);
-}
-//what is userpost.value.date
+  }
 
 }

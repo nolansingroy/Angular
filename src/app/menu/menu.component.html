@@ -10,10 +10,9 @@
   </div>
 
   <div fxFlex *ngIf="dishes">
-
     <mat-grid-list cols="2" rowHeight="200px">
       <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]">
-        <img height="200px" src="{{BaseURL + dish.image}}" alt={{dish.name}}>
+        <img height="200px" src="{{ BaseURL + dish.image }}" alt={{dish.name}}>
         <mat-grid-tile-footer>
           <h1>{{dish.name | uppercase}}</h1>
         </mat-grid-tile-footer>
@@ -27,6 +26,5 @@
       <h2>Error</h2>
       <h4>{{errMess}}</h4>
     </div>
- <!-- <app-dishdetail> </app-dishdetail> -->
 
 </div>
