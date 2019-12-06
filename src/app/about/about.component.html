@@ -61,7 +61,7 @@
 <mat-card fxFlex *ngIf="leaders" >
     <div *ngFor="let lead of leaders">
     <mat-card-header>
-      <img mat-card-avatar src={{lead.image}}>
+      <img mat-card-avatar src="{{BaseURL + lead.image}}">
       <mat-card-title>
         <h3>{{lead.name | uppercase}}</h3>
       </mat-card-title>

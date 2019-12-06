@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { LeaderService } from '../services/leader.service';
 import { Leader } from '../shared/leader';
 import { flyInOut, expand } from '../animations/app.animation';
@@ -23,7 +23,9 @@ export class AboutComponent implements OnInit {
 //promotion: Promotion;
 
 
-  constructor(private leaderService: LeaderService) { }
+  constructor(private leaderService: LeaderService,
+              @Inject('BaseURL') public BaseURL
+    ) { }
 
   ngOnInit() {
     //fetch the details of the leaders without promise

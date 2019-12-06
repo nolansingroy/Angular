@@ -60,7 +60,7 @@
             <h3>{{lead.name | uppercase}}</h3>
           </mat-card-title>
         </mat-card-header>
-        <img mat-card-image src={{lead.image}} alt={{lead.name}}>
+        <img mat-card-image src="{{ BaseURL + lead.image}}" alt={{lead.name}}>
         <mat-card-content>
             <p>{{"Designation: " + lead.designation}}</p>
             <p>{{"Abbrevation: " + lead.abbr}}</p>
