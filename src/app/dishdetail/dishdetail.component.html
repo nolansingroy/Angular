@@ -7,8 +7,8 @@
     fxLayoutGap.xs="0">
 
   <div fxFlex="100">
-    <div fxFlex *ngIf="dish" >
-      <mat-card *ngIf="dish">
+    <div fxFlex *ngIf="dish"[@visibility] = "visibility" >
+      <mat-card >
         <mat-card-header>
           <mat-card-title>
             <!-- Task 2.3 Use pipe to uppercase dish.name -->
@@ -58,7 +58,7 @@
       <mat-card-content>
           <!-- Task 2.2 Use mat list  -->
           <mat-list>
-              <div *ngFor="let comment of dish.comments">
+              <div *ngFor="let comment of dish.comments" [@visibility]="visibility">
                   <mat-list-item> {{comment.comment + ' '}} <br> </mat-list-item>
                   <mat-list-item> {{comment.rating + ' Stars'}} <br> </mat-list-item>
                   <mat-list-item>  {{comment.author + ' '}}
