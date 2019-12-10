@@ -36,7 +36,7 @@ export class DishdetailComponent implements OnInit {
   dishIds: string[];
   prev: string;
   next: string;
-  @ViewChild('fform')userpostFormDirective;
+  @ViewChild('fform')commentFormDirective;
   comment: Comment;
   commentForm: FormGroup;
   dishcopy: Dish;
@@ -74,12 +74,6 @@ validationMessages = {
                 ngOnInit() {
 	this.createForm();
 
-//    let id = this.route.snapshot.params['id'];
-    //this.dish = this.dishService.getDish(id);
-
-    //handle with the promise
-    // this.dishService.getDish(id).subscribe(
-    // dish => this.dish = dish);
 
   this.dishService.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
 
@@ -147,13 +141,14 @@ onSubmit() {
   console.log(this.comment);
   this.dishcopy.comments.push(this.comment);
   console.log(this.dishcopy.comments);
+
   this.dishService.putDish(this.dishcopy).subscribe(dish => {
 	this.dish = dish;this.dishcopy = dish;
 	}, errmess => {this.dish = null; this.dishcopy = null; this.errMess  = <any>errmess;});
 
   this.commentForm.reset({
    author: '',
-   rating:'',
+   rating: '',
    comment: '',
    date: ''
   });

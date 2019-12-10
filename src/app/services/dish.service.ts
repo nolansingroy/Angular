@@ -48,6 +48,5 @@ putDish(dish: Dish): Observable<Dish> {
   };
   return this.http.put<Dish>(baseURL + 'dishes/' + dish.id, dish, httpOptions)
     .pipe(catchError(this.processHTTPMsgService.handleError));
-
 }
 }

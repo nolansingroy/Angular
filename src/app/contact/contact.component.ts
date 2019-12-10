@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut } from '../animations/app.animation';
-
+import { FeedbackService } from '../services/feedback.service';
+import { switchMap } from 'rxjs/operators';
+import { Params, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -22,9 +24,12 @@ export class ContactComponent implements OnInit {
   @ViewChild('fform')feedbackFormDirective;
   feedbackForm:FormGroup;
   feedback: Feedback;
+  fbCopy: Feedback;
   contactType = ContactType;
+  errMess: string[];
 
-//simple js obejct to contain all errors for form
+
+//simple js object to contain all errors for form
 formErrors = {
   'firstname': '',
   'lastname': '',
@@ -54,7 +59,11 @@ validationMessages = {
  }
 }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private feedbackService: FeedbackService,private route: ActivatedRoute,
+              @Inject('BaseURL') private BaseURL
+
+    ) {
     this.createForm();
    }
 
@@ -104,6 +113,13 @@ onValueChanged(data?: any){
   onSubmit() {
     this.feedback = this.feedbackForm.value;
     console.log(this.feedback);
+    //create a copy
+    //this.fbCopy.push(this.feedback);// no comments array to hold such string
+    this.fbCopy = this.feedback;
+    this.feedbackService.putFeedback(this.fbCopy).subscribe(feedback => {
+      this.feedback = feedback; this.fbCopy = feedback;
+      }, errmess => {this.feedback = null; this.fbCopy = null; this.errMess  = <any>errmess;});
+
     this.feedbackForm.reset({
      firstname: '',
      lastname: '',
